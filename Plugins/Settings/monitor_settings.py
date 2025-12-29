@@ -29,16 +29,16 @@ async def set_interval_menu(client, callback_query):
     
     buttons = [
         [
-            InlineKeyboardButton("5 Min", callback_data="set_int_300"),
-            InlineKeyboardButton("10 Min", callback_data="set_int_600"),
-            InlineKeyboardButton("30 Min", callback_data="set_int_1800")
+            InlineKeyboardButton("5 ᴍɪɴ", callback_data="set_int_300"),
+            InlineKeyboardButton("10 ᴍɪɴ", callback_data="set_int_600"),
+            InlineKeyboardButton("30 ᴍɪɴ", callback_data="set_int_1800")
         ],
         [
-            InlineKeyboardButton("1 Hour", callback_data="set_int_3600"),
-            InlineKeyboardButton("Custom", callback_data="set_int_custom")
+            InlineKeyboardButton("1 ʜᴏᴜʀ", callback_data="set_int_3600"),
+            InlineKeyboardButton("ᴄᴜsᴛᴏᴍ", callback_data="set_int_custom")
         ],
         [
-            InlineKeyboardButton("⬅ Back", callback_data="settings_menu_2")
+            InlineKeyboardButton("⬅ ʙᴀᴄᴋ", callback_data="settings_menu_2")
         ]
     ]
     
@@ -68,7 +68,7 @@ async def set_int_custom_cb(client, callback_query):
     )
     user_states[callback_query.from_user.id] = {"state": "waiting_interval"}
     
-    buttons = [[InlineKeyboardButton("❌ Cancel", callback_data="cancel_input")]]
+    buttons = [[InlineKeyboardButton("❌ ᴄᴀɴᴄᴇʟ", callback_data="cancel_input")]]
     await edit_msg_with_pic(callback_query.message, text, InlineKeyboardMarkup(buttons))
     
     asyncio.create_task(timeout_handler(client, callback_query.message, callback_query.from_user.id, "waiting_interval"))
@@ -86,14 +86,14 @@ async def fsub_main_menu(client, callback_query):
     
     buttons = [
         [
-            InlineKeyboardButton("➕ Add Channel", callback_data="fsub_add"),
-            InlineKeyboardButton("➖ Remove Channel", callback_data="fsub_remove")
+            InlineKeyboardButton("➕ ᴀᴅᴅ ᴄʜᴀɴɴᴇʟ", callback_data="fsub_add"),
+            InlineKeyboardButton("➖ ʀᴇᴍᴏᴠᴇ ᴄʜᴀɴɴᴇʟ", callback_data="fsub_remove")
         ],
         [
-            InlineKeyboardButton("📋 List Channels", callback_data="fsub_list")
+            InlineKeyboardButton("📋 ʟɪsᴛ ᴄʜᴀɴɴᴇʟs", callback_data="fsub_list")
         ],
         [
-            InlineKeyboardButton("⬅ Back", callback_data="settings_menu_2")
+            InlineKeyboardButton("⬅ ʙᴀᴄᴋ", callback_data="settings_menu_2")
         ]
     ]
     
@@ -113,7 +113,7 @@ async def fsub_add_cb(client, callback_query):
     )
     user_states[callback_query.from_user.id] = {"state": "waiting_fsub_id"}
     
-    buttons = [[InlineKeyboardButton("❌ Cancel", callback_data="cancel_input")]]
+    buttons = [[InlineKeyboardButton("❌ ᴄᴀɴᴄᴇʟ", callback_data="cancel_input")]]
     await edit_msg_with_pic(callback_query.message, text, InlineKeyboardMarkup(buttons))
     
     asyncio.create_task(timeout_handler(client, callback_query.message, callback_query.from_user.id, "waiting_fsub_id"))
@@ -130,7 +130,7 @@ async def fsub_list_cb(client, callback_query):
         mode = await Seishiro.get_channel_mode(ch)
         msg += f"• <code>{ch}</code> | Mode: {mode}\n"
         
-    buttons = [[InlineKeyboardButton("⬅ Back", callback_data="set_fsub_btn")]]
+    buttons = [[InlineKeyboardButton("⬅ ʙᴀᴄᴋ", callback_data="set_fsub_btn")]]
     await edit_msg_with_pic(callback_query.message, get_styled_text(msg), InlineKeyboardMarkup(buttons))
 
 @Client.on_callback_query(filters.regex("^fsub_remove$"))
@@ -141,7 +141,7 @@ async def fsub_remove_cb(client, callback_query):
         "<i>(Auto-close in 30s)</i>"
     )
     user_states[callback_query.from_user.id] = {"state": "waiting_fsub_rem_id"}
-    buttons = [[InlineKeyboardButton("❌ Cancel", callback_data="cancel_input")]]
+    buttons = [[InlineKeyboardButton("❌ ᴄᴀɴᴄᴇʟ", callback_data="cancel_input")]]
     await edit_msg_with_pic(callback_query.message, text, InlineKeyboardMarkup(buttons))
     asyncio.create_task(timeout_handler(client, callback_query.message, callback_query.from_user.id, "waiting_fsub_rem_id"))
 
@@ -160,18 +160,18 @@ async def watermark_menu(client, callback_query):
     
     buttons = [
         [
-            InlineKeyboardButton("Set Text", callback_data="wm_set_text"),
-            InlineKeyboardButton("Set Position", callback_data="wm_set_pos")
+            InlineKeyboardButton("sᴇᴛ ᴛᴇxᴛ", callback_data="wm_set_text"),
+            InlineKeyboardButton("sᴇᴛ ᴘᴏsɪᴛɪᴏɴ", callback_data="wm_set_pos")
         ],
         [
-            InlineKeyboardButton("Set Color", callback_data="wm_set_color"),
-            InlineKeyboardButton("Set Opacity", callback_data="wm_set_opacity")
+            InlineKeyboardButton("sᴇᴛ ᴄᴏʟᴏʀ", callback_data="wm_set_color"),
+            InlineKeyboardButton("sᴇᴛ ᴏᴘᴀᴄɪᴛʏ", callback_data="wm_set_opacity")
         ],
         [
-            InlineKeyboardButton("Delete Watermark", callback_data="wm_delete")
+            InlineKeyboardButton("ᴅᴇʟᴇᴛᴇ ᴡᴀᴛᴇʀᴍᴀʀᴋ", callback_data="wm_delete")
         ],
         [
-            InlineKeyboardButton("⬅ Back", callback_data="settings_menu_2")
+            InlineKeyboardButton("⬅ ʙᴀᴄᴋ", callback_data="settings_menu_2")
         ]
     ]
     await edit_msg_with_pic(callback_query.message, text, InlineKeyboardMarkup(buttons))
@@ -184,7 +184,7 @@ async def wm_set_text_cb(client, callback_query):
         "<i>(Auto-close in 30s)</i>"
     )
     user_states[callback_query.from_user.id] = {"state": "waiting_wm_text"}
-    buttons = [[InlineKeyboardButton("❌ Cancel", callback_data="cancel_input")]]
+    buttons = [[InlineKeyboardButton("❌ ᴄᴀɴᴄᴇʟ", callback_data="cancel_input")]]
     await edit_msg_with_pic(callback_query.message, text, InlineKeyboardMarkup(buttons))
     asyncio.create_task(timeout_handler(client, callback_query.message, callback_query.from_user.id, "waiting_wm_text"))
 
@@ -205,17 +205,17 @@ async def wm_set_pos_cb(client, callback_query):
     text = get_styled_text("<b>📍 Select Watermark Position</b>")
     buttons = [
         [
-            InlineKeyboardButton("Top Left", callback_data="wm_pos_top-left"),
-            InlineKeyboardButton("Top Right", callback_data="wm_pos_top-right")
+            InlineKeyboardButton("ᴛᴏᴘ ʟᴇꜰᴛ", callback_data="wm_pos_top-left"),
+            InlineKeyboardButton("ᴛᴏᴘ ʀɪɢʜᴛ", callback_data="wm_pos_top-right")
         ],
         [
-            InlineKeyboardButton("Bottom Left", callback_data="wm_pos_bottom-left"),
-            InlineKeyboardButton("Bottom Right", callback_data="wm_pos_bottom-right")
+            InlineKeyboardButton("ʙᴏᴛᴛᴏᴍ ʟᴇꜰᴛ", callback_data="wm_pos_bottom-left"),
+            InlineKeyboardButton("ʙᴏᴛᴛᴏᴍ ʀɪɢʜᴛ", callback_data="wm_pos_bottom-right")
         ],
         [
-            InlineKeyboardButton("Center", callback_data="wm_pos_center")
+            InlineKeyboardButton("ᴄᴇɴᴛᴇʀ", callback_data="wm_pos_center")
         ],
-        [InlineKeyboardButton("⬅ Back", callback_data="set_watermark_btn")]
+        [InlineKeyboardButton("⬅ ʙᴀᴄᴋ", callback_data="set_watermark_btn")]
     ]
     await edit_msg_with_pic(callback_query.message, text, InlineKeyboardMarkup(buttons))
 
@@ -241,7 +241,7 @@ async def wm_set_color_cb(client, callback_query):
         "<i>(Auto-close in 30s)</i>"
     )
     user_states[callback_query.from_user.id] = {"state": "waiting_wm_color"}
-    buttons = [[InlineKeyboardButton("❌ Cancel", callback_data="cancel_input")]]
+    buttons = [[InlineKeyboardButton("❌ ᴄᴀɴᴄᴇʟ", callback_data="cancel_input")]]
     await edit_msg_with_pic(callback_query.message, text, InlineKeyboardMarkup(buttons))
     asyncio.create_task(timeout_handler(client, callback_query.message, callback_query.from_user.id, "waiting_wm_color"))
 
@@ -253,7 +253,7 @@ async def wm_set_opacity_cb(client, callback_query):
         "<i>(Auto-close in 30s)</i>"
     )
     user_states[callback_query.from_user.id] = {"state": "waiting_wm_opacity"}
-    buttons = [[InlineKeyboardButton("❌ Cancel", callback_data="cancel_input")]]
+    buttons = [[InlineKeyboardButton("❌ ᴄᴀɴᴄᴇʟ", callback_data="cancel_input")]]
     await edit_msg_with_pic(callback_query.message, text, InlineKeyboardMarkup(buttons))
     asyncio.create_task(timeout_handler(client, callback_query.message, callback_query.from_user.id, "waiting_wm_opacity"))
 
@@ -269,16 +269,16 @@ async def deltimer_menu(client, callback_query):
     
     buttons = [
         [
-            InlineKeyboardButton("10 Min", callback_data="set_dt_600"),
-            InlineKeyboardButton("30 Min", callback_data="set_dt_1800"),
-            InlineKeyboardButton("1 Hour", callback_data="set_dt_3600")
+            InlineKeyboardButton("10 ᴍɪɴ", callback_data="set_dt_600"),
+            InlineKeyboardButton("30 ᴍɪɴ", callback_data="set_dt_1800"),
+            InlineKeyboardButton("1 ʜᴏᴜʀ", callback_data="set_dt_3600")
         ],
         [
-            InlineKeyboardButton("Custom", callback_data="set_dt_custom"),
-            InlineKeyboardButton("Disable (0)", callback_data="set_dt_0")
+            InlineKeyboardButton("ᴄᴜsᴛᴏᴍ", callback_data="set_dt_custom"),
+            InlineKeyboardButton("ᴅɪsᴀʙʟᴇ (0)", callback_data="set_dt_0")
         ],
         [
-            InlineKeyboardButton("⬅ Back", callback_data="settings_menu_2")
+            InlineKeyboardButton("⬅ ʙᴀᴄᴋ", callback_data="settings_menu_2")
         ]
     ]
     await edit_msg_with_pic(callback_query.message, text, InlineKeyboardMarkup(buttons))
@@ -294,7 +294,7 @@ async def set_dt_preset(client, callback_query):
 async def set_dt_custom(client, callback_query):
     text = get_styled_text("<i>Send timer value in seconds...</i>")
     user_states[callback_query.from_user.id] = {"state": "waiting_deltimer"}
-    buttons = [[InlineKeyboardButton("❌ Cancel", callback_data="cancel_input")]]
+    buttons = [[InlineKeyboardButton("❌ ᴄᴀɴᴄᴇʟ", callback_data="cancel_input")]]
     await edit_msg_with_pic(callback_query.message, text, InlineKeyboardMarkup(buttons))
     asyncio.create_task(timeout_handler(client, callback_query.message, callback_query.from_user.id, "waiting_deltimer"))
 
@@ -305,7 +305,7 @@ async def toggle_monitor_cb(client, callback_query):
     new_status = not current
     await Seishiro.set_monitoring_status(new_status)
     
-    status_text = "Enabled" if new_status else "Disabled"
+    status_text = "ᴇɴᴀʙʟᴇᴅ" if new_status else "Disabled"
     await callback_query.answer(f"Monitoring {status_text}!", show_alert=True)
     
     if new_status:
@@ -347,8 +347,8 @@ async def view_progress_cb(client, callback_query):
         )
     
     buttons = [
-        [InlineKeyboardButton("🔄 Refresh", callback_data="view_progress")],
-        [InlineKeyboardButton("⬅ Back", callback_data="settings_menu_2")]
+        [InlineKeyboardButton("🔄 ʀᴇꜰʀᴇsʜ", callback_data="view_progress")],
+        [InlineKeyboardButton("⬅ ʙᴀᴄᴋ", callback_data="settings_menu_2")]
     ]
     
     try:

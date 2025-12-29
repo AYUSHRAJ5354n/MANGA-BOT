@@ -1,267 +1,97 @@
 # 🎌 Manga Downloader & Uploader Bot
 
-<div align="center">
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.10+-blue?style=for-the-badge&logo=python&logoColor=white">
+  <img src="https://img.shields.io/badge/Pyrogram-v2-yellow?style=for-the-badge&logo=telegram">
+  <img src="https://img.shields.io/badge/MongoDB-Database-green?style=for-the-badge&logo=mongodb">
+</p>
 
-![Manga Bot Banner](https://ibb.co/mVkSySr7)
+An advanced Telegram bot by **RexBots** designed to automate manga management. This bot supports downloading from multiple sources, auto-uploading to channels, PDF/CBZ generation, and advanced customization options.
 
-**Advanced Manga Automation Bot for Telegram**
+## 🚀 Features
 
-[![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://www.python.org/downloads/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Telegram](https://img.shields.io/badge/Telegram-Bot-blue.svg)](https://telegram.org/)
+*   **Multi-Source Support**: Download from MangaDex, MangaForest, Mangakakalot, AllManga, and WebCentral.
+*   **Auto-Upload**: Automatically upload new chapters to your Telegram channel.
+*   **Format Conversion**: Convert manga chapters to high-quality PDF or CBZ files.
+*   **Smart Search**: Search across multiple sources and download specific chapters or ranges.
+*   **Advanced Customization**:
+    *   **Thumbnails**: Set custom covers for your files.
+    *   **Watermarks**: Protect your content with customizable watermarks.
+    *   **Captions & Banners**: Personalize your posts with custom text and images.
+*   **Interactive Control Panel**: 
+    *   **Easy Configuration**: No need to remember complex commands! All settings (Channels, Media, Watermarks, File Formats, etc.) can be easily configured using the interactive **Settings** buttons in the bot.
+    *   Simply start the bot and click **⚙️ Settings** to access the full control panel.
+*   **Admin Tools**: Broadcast messages, manage admins, and force subscribe.
+*   **Persistent Storage**: Uses MongoDB to store user data and settings.
 
-</div>
-
----
-
-## ✨ Features
-
-- 🔄 **Multi-Source Support**: Download from MangaDex, MangaForest, Mangakakalot, AllManga, and WebCentral
-- 📥 **Auto-Upload**: Automatically upload new chapters to your Telegram channel
-- 🎨 **Custom Thumbnails**: Set custom cover images for your PDFs
-- 💧 **Watermarking**: Add custom watermarks to protect your content
-- 📄 **PDF/CBZ Generation**: Convert manga chapters to high-quality PDFs or CBZ files
-- 🔍 **Smart Search**: Search across multiple manga sources with `/search` command
-- 🎯 **Custom Downloads**: Download specific chapters or ranges
-- 📊 **Progress Tracking**: Real-time upload/download progress display
-- 🔐 **Force Subscribe**: Require users to join channels before downloading
-- 👥 **Admin System**: Multi-admin support with role management
-- 📢 **Broadcast**: Send announcements to all bot users
-- ⚙️ **Advanced Settings**: Customize banners, captions, file formats, and more
-
----
-
-## 🚀 Quick Start
+## 🛠 Deployment
 
 ### Prerequisites
 
-- Python 3.10 or higher
-- Telegram Bot Token (from [@BotFather](https://t.me/BotFather))
-- Telegram API ID & Hash (from [my.telegram.org](https://my.telegram.org))
+*   Python 3.10+
+*   MongoDB Database
+*   Telegram API ID and Hash
+*   Bot Token
 
-### Installation
+### Environment Variables
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/abhinai2244/MANGA-BOT.git
-   cd MANGA-BOT
-   ```
+To run the bot, you need to set the following environment variables:
 
-2. **Install dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
+| Variable | Description |
+| :--- | :--- |
+| `BOT_TOKEN` | Your Telegram Bot Token from @BotFather |
+| `API_ID` | Your Telegram API ID from my.telegram.org |
+| `API_HASH` | Your Telegram API Hash from my.telegram.org |
+| `USER_ID` | Your Telegram User ID (Owner) |
+| `DB_URL` | Your MongoDB Connection String |
+| `DB_NAME` | Database Name (default: `rex_auto_manga1`) |
+| `CHECK_INTERVAL` | Auto-update check interval in seconds (default: `300`) |
+| `MAX_CHAPTERS` | Max chapters to process per check (default: `5`) |
+| `PORT` | Web server port (default: `8080`) |
 
-3. **Configure the bot**
-   
-   Edit `config.py` with your credentials:
-   ```python
-   BOT_TOKEN = "your_bot_token"
-   USER_ID = your_telegram_user_id
-   API_ID = your_api_id
-   API_HASH = "your_api_hash"
-   ```
+### Local Setup
 
-4. **Run the bot**
-   ```bash
-   python Bot.py
-   ```
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/abhinai2244/MANGA-BOT.git
+    cd MANGA-BOT
+    ```
 
----
+2.  **Install dependencies:**
+    ```bash
+    pip3 install -r requirements.txt
+    ```
 
-## 📋 Available Commands
+3.  **Run the bot:**
+    ```bash
+    python3 Bot.py
+    ```
 
-### 👤 User Commands
+### Docker
 
-| Command | Description |
-|---------|-------------|
-| `/start` | Start the bot and view main menu |
-| `/search <query>` | Search for manga across all sources |
-| `/help` | Display help information |
-
-### 👮 Admin Commands
-
-#### Channel Management
-| Command | Description |
-|---------|-------------|
-| `/set_chnl <channel_id>` | Set default upload channel |
-| `/view_chnl` | View current channel configuration |
-| `/rem_chnl` | Remove channel configuration |
-
-#### Media & Appearance
-| Command | Description |
-|---------|-------------|
-| `/set_caption` | Set custom caption template |
-| `/set_banner` | Add intro/outro banner images |
-| `/set_watermark` | Add custom watermark to pages |
-| `/view_watermark` | View current watermark settings |
-| `/rem_watermark` | Remove watermark |
-
-#### File & Format
-| Command | Description |
-|---------|-------------|
-| `/set_format` | Set filename format template |
-| `/view_format` | View current filename format |
-
-#### Admin Control
-| Command | Description |
-|---------|-------------|
-| `/add_admin <user_id>` | Add a new admin |
-| `/deladmin <user_id>` | Remove an admin |
-| `/admins` | List all admins |
-
-#### Force Subscribe
-| Command | Description |
-|---------|-------------|
-| `/fsub_mode` | Toggle force subscribe on/off |
-| `/add_fsub_chnl <channel_id>` | Add channel to force subscribe list |
-| `/rem_fsub_chnl <channel_id>` | Remove channel from force subscribe list |
-| `/fsub_chnls` | List all force subscribe channels |
-
-#### Utilities
-| Command | Description |
-|---------|-------------|
-| `/broadcast <message>` | Send message to all bot users |
-| `/makepost` | Create custom manga post |
-
----
-
-## ⚙️ Configuration Options
-
-Access settings via `/start` → **⚙️ Settings**
-
-### Available Settings
-
-- **📡 Manga Source**: Choose default source (MangaDex, MangaForest, etc.)
-- **📄 File Type**: PDF or CBZ format
-- **🖼️ Thumbnail**: Set custom thumbnail for uploads
-- **💧 Watermark**: Configure text watermark (position, color, opacity)
-- **🎨 Banners**: Add intro/outro images to chapters
-- **📝 Caption Template**: Customize post captions
-- **🎯 Compress**: Enable image compression
-- **⏱️ Check Interval**: Set auto-update check frequency
-- **🔔 Monitor Toggle**: Turn auto-monitoring on/off
-- **📢 Channel Stickers**: Add stickers to channel posts
-
----
-
-## 🎯 Usage Examples
-
-### Searching for Manga
+```bash
+docker build -t rexbots-manga-bot -f Docker .
+docker run -d --env-file .env rexbots-manga-bot
 ```
-/search solo leveling
-```
-Select a source from the buttons, then choose chapters to download.
-
-### Custom Range Download
-1. Search for a manga
-2. Click "⬇ Custom Download (Range)"
-3. Enter range: `10-20` or single chapter: `15`
-
-### Setting Watermark
-```
-/set_watermark
-```
-Follow the interactive menu to customize position, color, and opacity.
-
----
-
-## 📁 Project Structure
-
-```
-MANGA-BOT/
-├── Bot.py                 # Main bot logic
-├── config.py             # Configuration settings
-├── requirements.txt      # Python dependencies
-├── Database/
-│   └── database.py       # Database operations
-└── Plugins/
-    ├── start.py          # Start & help commands
-    ├── search.py         # Search functionality
-    ├── admin.py          # Admin commands
-    ├── uploading.py      # Upload handler
-    ├── downloading.py    # Download handler
-    ├── Settings/         # Settings menu plugins
-    └── Sites/            # Manga source APIs
-        ├── mangadex.py
-        ├── mangaforest.py
-        ├── mangakakalot.py
-        ├── allmanga.py
-        └── webcentral.py
-```
-
----
 
 ## 🤝 Contributors
 
 A huge thanks to the developers who made this project possible:
 
-<table>
-  <tr>
-    <td align="center">
-      <img src="https://github.com/abhinai2244.png" width="100px;" alt="Abhi"/>
-      <br />
-      <sub><b>Abhi</b></sub>
-      <br />
-      <sub>Owner</sub>
-    </td>
-    <td align="center">
-      <img src="https://via.placeholder.com/100" width="100px;" alt="Abhinav"/>
-      <br />
-      <sub><b>Abhinav</b></sub>
-      <br />
-      <sub>Developer</sub>
-    </td>
-    <td align="center">
-      <img src="https://via.placeholder.com/100" width="100px;" alt="Bharath"/>
-      <br />
-      <sub><b>Bharath</b></sub>
-      <br />
-      <sub>Developer</sub>
-    </td>
-    <td align="center">
-      <img src="https://via.placeholder.com/100" width="100px;" alt="Master"/>
-      <br />
-      <sub><b>Master</b></sub>
-      <br />
-      <sub>Developer</sub>
-    </td>
-  </tr>
-</table>
+<div align="center">
 
----
+| [**Abhi**](https://github.com/abhinai2244) | [**Abhinav**](https://github.com/) | [**Master**]() |
+| :---: | :---: | :---: | :---: |
+| Owner | Developer | Developer |
+
+</div>
 
 ## 📞 Support
 
 For queries, feature requests, or bug reports, join our official channel:
 
 <div align="center">
-
-[![Telegram Channel](https://img.shields.io/badge/Telegram-Channel-blue?logo=telegram)](https://t.me/about_zani/195)
-[![Support Group](https://img.shields.io/badge/Telegram-Support-blue?logo=telegram)](https://t.me/akaza7902)
-
-**Official Channel:** [@REXBOTS_OFFICIAL](https://t.me/akaza7902)
-
-</div>
-
----
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-## ⚠️ Disclaimer
-
-This bot is for educational purposes only. Users are responsible for complying with copyright laws in their jurisdiction. The developers do not encourage piracy or copyright infringement.
-
----
-
-<div align="center">
-
-**Made with ❤️ by the REXBOTS Team**
-
-⭐ **Star this repo if you find it useful!** ⭐
-
+  <a href="https://t.me/akaza7902">
+    <img src="https://img.shields.io/badge/RexBots-Official%20Channel-blue?style=for-the-badge&logo=telegram">
+  </a>
 </div>

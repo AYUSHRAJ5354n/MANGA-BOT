@@ -28,12 +28,12 @@ async def start_msg(client, message):
             
             if len(message.command) > 1:
                deep_link = message.command[1]
-               buttons.append([InlineKeyboardButton("Done ✅", url=f"https://t.me/{client.me.username}?start={deep_link}")])
+               buttons.append([InlineKeyboardButton("ᴅᴏɴᴇ ✅", url=f"https://t.me/{client.me.username}?start={deep_link}")])
             else:
-               buttons.append([InlineKeyboardButton("Done ✅", url=f"https://t.me/{client.me.username}?start=True")])
+               buttons.append([InlineKeyboardButton("ᴅᴏɴᴇ ✅", url=f"https://t.me/{client.me.username}?start=True")])
                
             await message.reply_text(
-                "<b>⚠️ You must join our channels to use this bot!</b>\n\n"
+                "<b>⚠️ ʏᴏᴜ ᴍᴜsᴛ ᴊᴏɪɴ ᴏᴜʀ ᴄʜᴀɴɴᴇʟs ᴛᴏ ᴜsᴇ ᴛʜɪs ʙᴏᴛ!</b>\ɴ\ɴ"
                 "Please join the channels below and try again.",
                 reply_markup=InlineKeyboardMarkup(buttons),
                 parse_mode=enums.ParseMode.HTML
@@ -51,14 +51,14 @@ async def start_msg(client, message):
                         await message.reply_document(file_id)
                      except Exception as e:
                         logger.error(f"Failed to send file {file_id}: {e}")
-                        await message.reply("❌ Error sending file. It might have been deleted.")
+                        await message.reply("❌ ᴇʀʀᴏʀ sᴇɴᴅɪɴɢ ꜰɪʟᴇ. ɪᴛ ᴍɪɢʜᴛ ʜᴀᴠᴇ ʙᴇᴇɴ ᴅᴇʟᴇᴛᴇᴅ.")
                 else:
-                     await message.reply("❌ File not found or deleted from DB.")
+                     await message.reply("❌ ꜰɪʟᴇ ɴᴏᴛ ꜰᴏᴜɴᴅ ᴏʀ ᴅᴇʟᴇᴛᴇᴅ ꜰʀᴏᴍ ᴅʙ.")
                 return
 
         try:
             if await Seishiro.is_user_banned(message.from_user.id):
-                await message.reply_text("🚫 **Access Denied**\n\nYou are banned from using this bot.")
+                await message.reply_text("🚫 **ᴀᴄᴄᴇss ᴅᴇɴɪᴇᴅ**\ɴ\ɴʏᴏᴜ ᴀʀᴇ ʙᴀɴɴᴇᴅ ꜰʀᴏᴍ ᴜsɪɴɢ ᴛʜɪs ʙᴏᴛ.")
                 return
         except Exception as db_e:
             logger.error(f"Database error (Ban Check): {db_e}")
@@ -69,15 +69,15 @@ async def start_msg(client, message):
             logger.error(f"Database error (Add User): {db_e}")
 
         caption = (
-            f"<b>👋 Hello {message.from_user.first_name}!</b>\n\n"
-            f"<blockquote><b>I am an advanced Manga Downloader & Uploader Bot. "
-            f"I can help you manage and automate your manga channel.</b></blockquote>\n\n"
-            f"<b><blockquote>🚀 Features:</b>\n"
-            f"• Auto-Upload to Channel\n"
-            f"• Custom Thumbnails\n"
-            f"• Watermarking\n"
-            f"• PDF Generation\n\n</blockquote>"
-            f"<i>Click the buttons below to control me!</i>"
+            f"<b>👋 ʜᴇʟʟᴏ {message.from_user.first_name}!</b>\n\n"
+            f"<blockquote><b>ɪ ᴀᴍ ᴀɴ ᴀᴅᴠᴀɴᴄᴇᴅ ᴍᴀɴɢᴀ ᴅᴏᴡɴʟᴏᴀᴅᴇʀ & ᴜᴘʟᴏᴀᴅᴇʀ ʙᴏᴛ. "
+            f"ɪ ᴄᴀɴ ʜᴇʟᴘ ʏᴏᴜ ᴍᴀɴᴀɢᴇ ᴀɴᴅ ᴀᴜᴛᴏᴍᴀᴛᴇ ʏᴏᴜʀ ᴍᴀɴɢᴀ ᴄʜᴀɴɴᴇʟ.</b></blockquote>\n\n"
+            f"<b><blockquote>🚀 ꜰᴇᴀᴛᴜʀᴇs:</b>\n"
+            f"• ᴀᴜᴛᴏ-ᴜᴘʟᴏᴀᴅ ᴛᴏ ᴄʜᴀɴɴᴇʟ\n"
+            f"• ᴄᴜsᴛᴏᴍ ᴛʜᴜᴍʙɴᴀɪʟs\n"
+            f"• ᴡᴀᴛᴇʀᴍᴀʀᴋɪɴɢ\n</blockquote>" 
+
+            f"<i>ᴄʟɪᴄᴋ ᴛʜᴇ ʙᴜᴛᴛᴏɴs ʙᴇʟᴏᴡ ᴛᴏ ᴄᴏɴᴛʀᴏʟ ᴍᴇ!</i>"
         )
         
         if hasattr(Config, "PICS") and Config.PICS:
@@ -87,12 +87,12 @@ async def start_msg(client, message):
 
         buttons = InlineKeyboardMarkup([
             [
-                InlineKeyboardButton("⚙️ Settings", callback_data="settings_menu"),
-                InlineKeyboardButton("📚 Help", callback_data="help_menu")
+                InlineKeyboardButton(" sᴇᴛᴛɪɴɢs", callback_data="settings_menu"),
+                InlineKeyboardButton(" ʜᴇʟᴘ", callback_data="help_menu")
             ],
             [
-                InlineKeyboardButton("📢 Official Channel", url="https://t.me/akaza7902"),
-                InlineKeyboardButton("👨‍💻 Developer", url="https://t.me/akaza7902")
+                InlineKeyboardButton("📢 ᴏꜰꜰɪᴄɪᴀʟ ᴄʜᴀɴɴᴇʟ", url="https://t.me/RexBots_Official"),
+                InlineKeyboardButton(" ᴅᴇᴠᴇʟᴏᴘᴇʀ", url="https://t.me/akaza7902")
             ]
         ])
 
@@ -134,7 +134,7 @@ async def help_menu(client, callback_query):
         "<b>📢 Updates Channel:</b> @RexBots_Official"
     )
     
-    buttons = [[InlineKeyboardButton("🔙 Back", callback_data="start_menu")]]
+    buttons = [[InlineKeyboardButton("🔙 ʙᴀᴄᴋ", callback_data="start_menu")]]
     
     await edit_msg_with_pic(callback_query.message, paraphrased, InlineKeyboardMarkup(buttons))
 

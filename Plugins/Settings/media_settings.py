@@ -32,18 +32,18 @@ async def caption_settings_callback(client, callback_query):
 @Client.on_message(filters.command("set_caption") & filters.private & admin)
 async def set_caption_cmd(client, message):
     if len(message.command) < 2:
-        return await message.reply("Usage: /set_caption <text>")
+        return await message.reply("ᴜsᴀɢᴇ: /sᴇᴛ_ᴄᴀᴘᴛɪᴏɴ <text>")
     text = message.text.split(None, 1)[1]
     await Seishiro.set_caption(text)
-    await message.reply("<blockquote><b>✅ Caption Updated</b></blockquote>")
+    await message.reply("<blockquote><b>✅ ᴄᴀᴘᴛɪᴏɴ ᴜᴘᴅᴀᴛᴇᴅ</b></blockquote>")
 
 @Client.on_message(filters.command("set_banner") & filters.private & admin)
 async def set_banner_cmd(client, message):
     if not message.reply_to_message or not message.reply_to_message.photo:
-        return await message.reply("Reply to a photo to set Banner.")
+        return await message.reply("ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴘʜᴏᴛᴏ ᴛᴏ sᴇᴛ ʙᴀɴɴᴇʀ.")
     file_id = message.reply_to_message.photo.file_id
     await Seishiro.set_config("banner_image", file_id)
-    await message.reply("<blockquote><b>✅ Banner Image Updated</b></blockquote>")
+    await message.reply("<blockquote><b>✅ ʙᴀɴɴᴇʀ ɪᴍᴀɢᴇ ᴜᴘᴅᴀᴛᴇᴅ</b></blockquote>")
 
 
 async def get_banner_menu(client):
@@ -61,20 +61,20 @@ async def get_banner_menu(client):
     
     buttons = [
         [
-            InlineKeyboardButton("Set / Change - 1", callback_data="set_banner_1"),
-            InlineKeyboardButton("Delete - 1", callback_data="del_banner_1")
+            InlineKeyboardButton("sᴇᴛ / ᴄʜᴀɴɢᴇ - 1", callback_data="set_banner_1"),
+            InlineKeyboardButton("ᴅᴇʟᴇᴛᴇ - 1", callback_data="del_banner_1")
         ],
-        [InlineKeyboardButton("Show Banner - 1", callback_data="show_banner_1")],
+        [InlineKeyboardButton("sʜᴏᴡ ʙᴀɴɴᴇʀ - 1", callback_data="show_banner_1")],
         
         [
-            InlineKeyboardButton("Set / Change - 2", callback_data="set_banner_2"),
-            InlineKeyboardButton("Delete - 2", callback_data="del_banner_2")
+            InlineKeyboardButton("sᴇᴛ / ᴄʜᴀɴɢᴇ - 2", callback_data="set_banner_2"),
+            InlineKeyboardButton("ᴅᴇʟᴇᴛᴇ - 2", callback_data="del_banner_2")
         ],
-        [InlineKeyboardButton("Show Banner - 2", callback_data="show_banner_2")],
+        [InlineKeyboardButton("sʜᴏᴡ ʙᴀɴɴᴇʀ - 2", callback_data="show_banner_2")],
         
         [
-            InlineKeyboardButton("⬅ Back", callback_data="settings_menu"),
-            InlineKeyboardButton("❄ Close ❄", callback_data="stats_close")
+            InlineKeyboardButton("⬅ ʙᴀᴄᴋ", callback_data="settings_menu"),
+            InlineKeyboardButton("❄ ᴄʟᴏsᴇ ❄", callback_data="stats_close")
         ]
     ]
     return text, InlineKeyboardMarkup(buttons)
@@ -94,8 +94,8 @@ async def set_banner_input_cb(client, callback_query):
     user_states[callback_query.from_user.id] = {"state": f"waiting_banner_{num}"}
     
     buttons = [
-        [InlineKeyboardButton("❌ Cancel", callback_data="cancel_input")],
-        [InlineKeyboardButton("⬅ Back", callback_data="settings_menu")]
+        [InlineKeyboardButton("❌ ᴄᴀɴᴄᴇʟ", callback_data="cancel_input")],
+        [InlineKeyboardButton("⬅ ʙᴀᴄᴋ", callback_data="settings_menu")]
     ]
     
     await callback_query.message.edit_text(text, reply_markup=InlineKeyboardMarkup(buttons), parse_mode=enums.ParseMode.HTML)
@@ -120,32 +120,32 @@ async def show_banner_cb(client, callback_query):
     num = callback_query.data.split("_")[-1]
     file_id = await Seishiro.get_config(f"banner_image_{num}")
     if file_id:
-        await callback_query.message.reply_photo(file_id, caption=f"Banner {num}")
-    else:
-        await callback_query.answer("No banner set.", show_alert=True)
+        await callback_query.message.reply_photo(file_id, caption=f"ʙᴀɴɴᴇʀ {num}")
+    ᴇʟsᴇ:
+        ᴀᴡᴀɪᴛ ᴄᴀʟʟʙᴀᴄᴋ_ǫᴜᴇʀʏ.ᴀɴsᴡᴇʀ("ɴᴏ ʙᴀɴɴᴇʀ sᴇᴛ.", sʜᴏᴡ_ᴀʟᴇʀᴛ=ᴛʀᴜᴇ)
 
-@Client.on_callback_query(filters.regex("^set_caption_btn$"))
-async def set_caption_cb(client, callback_query):
-    curr = await Seishiro.get_caption()
-    curr_disp = "Set" if curr else "None"
+@ᴄʟɪᴇɴᴛ.ᴏɴ_ᴄᴀʟʟʙᴀᴄᴋ_ǫᴜᴇʀʏ(ꜰɪʟᴛᴇʀs.ʀᴇɢᴇx("^sᴇᴛ_ᴄᴀᴘᴛɪᴏɴ_ʙᴛɴ$"))
+ᴀsʏɴᴄ ᴅᴇꜰ sᴇᴛ_ᴄᴀᴘᴛɪᴏɴ_ᴄʙ(ᴄʟɪᴇɴᴛ, ᴄᴀʟʟʙᴀᴄᴋ_ǫᴜᴇʀʏ):
+    ᴄᴜʀʀ = ᴀᴡᴀɪᴛ sᴇɪsʜɪʀᴏ.ɢᴇᴛ_ᴄᴀᴘᴛɪᴏɴ()
+    ᴄᴜʀʀ_ᴅɪsᴘ = "sᴇᴛ" ɪꜰ ᴄᴜʀʀ ᴇʟsᴇ "ɴᴏɴᴇ"
     
-    text = get_styled_text(
-        "<b>Caption</b>\n\n"
-        "<b>Format:</b>\n"
-        "➥ {manga_title}: Manga Name\n"
-        "➥ {chapter_num}: Chapter Number\n"
-        "➥ {file_name}: File Name\n\n"
+    ᴛᴇxᴛ = ɢᴇᴛ_sᴛʏʟᴇᴅ_ᴛᴇxᴛ(
+        "<b>ᴄᴀᴘᴛɪᴏɴ</b>\ɴ\ɴ"
+        "<b>ꜰᴏʀᴍᴀᴛ:</b>\ɴ"
+        "➥ {manga_title}: ᴍᴀɴɢᴀ ɴᴀᴍᴇ\ɴ"
+        "➥ {chapter_num}: ᴄʜᴀᴘᴛᴇʀ ɴᴜᴍʙᴇʀ\ɴ"
+        "➥ {file_name}: ꜰɪʟᴇ ɴᴀᴍᴇ\ɴ\ɴ"
         f"➥ Your Value: {curr_disp}"
     )
     
     buttons = [
         [
-            InlineKeyboardButton("Set / Change", callback_data="set_caption_input"),
-            InlineKeyboardButton("Delete", callback_data="del_caption_btn")
+            InlineKeyboardButton("sᴇᴛ / ᴄʜᴀɴɢᴇ", callback_data="set_caption_input"),
+            InlineKeyboardButton("ᴅᴇʟᴇᴛᴇ", callback_data="del_caption_btn")
         ],
         [
-            InlineKeyboardButton("⬅ Back", callback_data="settings_menu"),
-            InlineKeyboardButton("❄ Close ❄", callback_data="stats_close")
+            InlineKeyboardButton("⬅ ʙᴀᴄᴋ", callback_data="settings_menu"),
+            InlineKeyboardButton("❄ ᴄʟᴏsᴇ ❄", callback_data="stats_close")
         ]
     ]
     await callback_query.message.edit_text(text, reply_markup=InlineKeyboardMarkup(buttons), parse_mode=enums.ParseMode.HTML)
@@ -158,7 +158,7 @@ async def caption_input_cb(client, callback_query):
     )
     user_states[callback_query.from_user.id] = {"state": "waiting_caption"}
     
-    buttons = [[InlineKeyboardButton("❌ Cancel", callback_data="cancel_input")]]
+    buttons = [[InlineKeyboardButton("❌ ᴄᴀɴᴄᴇʟ", callback_data="cancel_input")]]
     await callback_query.message.edit_text(text, reply_markup=InlineKeyboardMarkup(buttons), parse_mode=enums.ParseMode.HTML)
     
     asyncio.create_task(timeout_handler(client, callback_query.message, callback_query.from_user.id, "waiting_caption"))
@@ -181,7 +181,7 @@ async def sticker_placeholder(client, callback_query):
     )
     user_states[callback_query.from_user.id] = {"state": f"waiting_{key}"}
     
-    buttons = [[InlineKeyboardButton("❌ Cancel", callback_data="cancel_input")]]
+    buttons = [[InlineKeyboardButton("❌ ᴄᴀɴᴄᴇʟ", callback_data="cancel_input")]]
     await callback_query.message.edit_text(text, reply_markup=InlineKeyboardMarkup(buttons), parse_mode=enums.ParseMode.HTML)
     
     asyncio.create_task(timeout_handler(client, callback_query.message, callback_query.from_user.id, f"waiting_{key}"))
@@ -196,7 +196,7 @@ async def update_text_cb(client, callback_query):
     )
     user_states[callback_query.from_user.id] = {"state": "waiting_update_text"}
     
-    buttons = [[InlineKeyboardButton("❌ Cancel", callback_data="cancel_input")]]
+    buttons = [[InlineKeyboardButton("❌ ᴄᴀɴᴄᴇʟ", callback_data="cancel_input")]]
     await callback_query.message.edit_text(text, reply_markup=InlineKeyboardMarkup(buttons), parse_mode=enums.ParseMode.HTML)
     
     asyncio.create_task(timeout_handler(client, callback_query.message, callback_query.from_user.id, "waiting_update_text"))
@@ -211,7 +211,7 @@ async def set_thumb_cb(client, callback_query):
     )
     user_states[callback_query.from_user.id] = {"state": "waiting_thumb"}
     
-    buttons = [[InlineKeyboardButton("❌ Cancel", callback_data="cancel_input")]]
+    buttons = [[InlineKeyboardButton("❌ ᴄᴀɴᴄᴇʟ", callback_data="cancel_input")]]
     await callback_query.message.edit_text(text, reply_markup=InlineKeyboardMarkup(buttons), parse_mode=enums.ParseMode.HTML)
     
     asyncio.create_task(timeout_handler(client, callback_query.message, callback_query.from_user.id, "waiting_thumb"))

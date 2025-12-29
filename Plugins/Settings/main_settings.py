@@ -20,39 +20,39 @@ async def settings_main_menu(client, callback_query):
             return
 
         buttons = [
-            [InlineKeyboardButton("Auto Update Channels", callback_data="header_auto_update_channels")],
+            [InlineKeyboardButton("ᴀᴜᴛᴏ ᴜᴘᴅᴀᴛᴇ ᴄʜᴀɴɴᴇʟs", callback_data="header_auto_update_channels")],
             
             [
-                InlineKeyboardButton("Banner", callback_data="set_banner_btn"),
-                InlineKeyboardButton("Caption", callback_data="set_caption_btn")
+                InlineKeyboardButton("ʙᴀɴɴᴇʀ", callback_data="set_banner_btn"),
+                InlineKeyboardButton("ᴄᴀᴘᴛɪᴏɴ", callback_data="set_caption_btn")
             ],
             [
-                InlineKeyboardButton("Channel Stickers", callback_data="set_channel_stickers_btn"),
-                InlineKeyboardButton("Compress", callback_data="set_compress_btn")
+                InlineKeyboardButton("ᴄʜᴀɴɴᴇʟ sᴛɪᴄᴋᴇʀs", callback_data="set_channel_stickers_btn"),
+                InlineKeyboardButton("ᴄᴏᴍᴘʀᴇss", callback_data="set_compress_btn")
             ],
             [
-                InlineKeyboardButton("File Name", callback_data="set_format_btn"),
-                InlineKeyboardButton("File Type", callback_data="set_file_type_btn")
-            ],
-
-            [InlineKeyboardButton("REXBOTS OFFICAL", callback_data="header_watermark")],
-
-            [
-                InlineKeyboardButton("Hyper Link", callback_data="set_hyperlink_btn"),
-                InlineKeyboardButton("Merge Size", callback_data="set_merge_size_btn")
-            ],
-            [
-                InlineKeyboardButton("Password", callback_data="set_password_btn"),
-                InlineKeyboardButton("Regex", callback_data="set_regex_btn")
-            ],
-            [
-                InlineKeyboardButton("Thumbnail", callback_data="set_thumb_btn"), 
-                InlineKeyboardButton("Update Channel", callback_data="set_channel_btn")
+                InlineKeyboardButton("ꜰɪʟᴇ ɴᴀᴍᴇ", callback_data="set_format_btn"),
+                InlineKeyboardButton("ꜰɪʟᴇ ᴛʏᴘᴇ", callback_data="set_file_type_btn")
             ],
 
+            [InlineKeyboardButton("ʀᴇxʙᴏᴛs ᴏꜰꜰɪᴄᴀʟ", callback_data="header_watermark")],
+
             [
-                InlineKeyboardButton("✨ Home ✨", callback_data="start_menu"),
-                InlineKeyboardButton("➡️ Next ➡️", callback_data="settings_menu_2")
+                InlineKeyboardButton("ʜʏᴘᴇʀ ʟɪɴᴋ", callback_data="set_hyperlink_btn"),
+                InlineKeyboardButton("ᴍᴇʀɢᴇ sɪᴢᴇ", callback_data="set_merge_size_btn")
+            ],
+            [
+                InlineKeyboardButton("ᴘᴀssᴡᴏʀᴅ", callback_data="set_password_btn"),
+                InlineKeyboardButton("ʀᴇɢᴇx", callback_data="set_regex_btn")
+            ],
+            [
+                InlineKeyboardButton("ᴛʜᴜᴍʙɴᴀɪʟ", callback_data="set_thumb_btn"), 
+                InlineKeyboardButton("ᴜᴘᴅᴀᴛᴇ ᴄʜᴀɴɴᴇʟ", callback_data="set_channel_btn")
+            ],
+
+            [
+                InlineKeyboardButton("✨ ʜᴏᴍᴇ ✨", callback_data="start_menu"),
+                InlineKeyboardButton("➡️ ɴᴇxᴛ ➡️", callback_data="settings_menu_2")
             ]
         ]
         
@@ -74,43 +74,43 @@ async def settings_main_menu(client, callback_query):
 async def settings_main_menu_2(client, callback_query):
     try:
         buttons = [
-            [InlineKeyboardButton("Dump Channel", callback_data="header_dump_channel")],
+            [InlineKeyboardButton("ᴅᴜᴍᴘ ᴄʜᴀɴɴᴇʟ", callback_data="header_dump_channel")],
 
             [
-                InlineKeyboardButton("Update Text", callback_data="set_update_text_btn"),
+                InlineKeyboardButton("ᴜᴘᴅᴀᴛᴇ ᴛᴇxᴛ", callback_data="set_update_text_btn"),
             ],
 
-            [InlineKeyboardButton("Monitor & FSub", callback_data="header_new_items")],
+            [InlineKeyboardButton("ᴍᴏɴɪᴛᴏʀ & ꜰsᴜʙ", callback_data="header_new_items")],
 
             [
                 InlineKeyboardButton(f"Monitor: {'✅ ON' if await Seishiro.get_monitoring_status() else '❌ OFF'}", callback_data="toggle_monitor"),
-                InlineKeyboardButton("View Progress 📊", callback_data="view_progress")
+                InlineKeyboardButton("ᴠɪᴇᴡ ᴘʀᴏɢʀᴇss 📊", callback_data="view_progress")
             ],
 
             [
-                InlineKeyboardButton("Set Interval", callback_data="set_interval_btn"),
-                InlineKeyboardButton("FSub Mode", callback_data="set_fsub_btn")
+                InlineKeyboardButton("sᴇᴛ ɪɴᴛᴇʀᴠᴀʟ", callback_data="set_interval_btn"),
+                InlineKeyboardButton("ꜰsᴜʙ ᴍᴏᴅᴇ", callback_data="set_fsub_btn")
             ],
             [
-                InlineKeyboardButton("Watermark", callback_data="set_watermark_btn"),
-                InlineKeyboardButton("Delete Timer", callback_data="set_deltimer_btn")
+                InlineKeyboardButton("ᴡᴀᴛᴇʀᴍᴀʀᴋ", callback_data="set_watermark_btn"),
+                InlineKeyboardButton("ᴅᴇʟᴇᴛᴇ ᴛɪᴍᴇʀ", callback_data="set_deltimer_btn")
             ],
 
-            [InlineKeyboardButton("Manga Source", callback_data="header_source")],
+            [InlineKeyboardButton("ᴍᴀɴɢᴀ sᴏᴜʀᴄᴇ", callback_data="header_source")],
 
             [
                 InlineKeyboardButton(f"📡 Source: {await Seishiro.get_config('manga_source', 'mangadex')}", callback_data="set_source_btn")
             ],
 
-            [InlineKeyboardButton("Admin Controls", callback_data="header_admins")],
+            [InlineKeyboardButton("ᴀᴅᴍɪɴ ᴄᴏɴᴛʀᴏʟs", callback_data="header_admins")],
             
             [
-                InlineKeyboardButton("Admins 👮‍♂️", callback_data="admin_menu_btn")
+                InlineKeyboardButton("ᴀᴅᴍɪɴs 👮‍♂️", callback_data="admin_menu_btn")
             ],
 
             [
-                InlineKeyboardButton("⬅️ Back ⬅️", callback_data="settings_menu_1"),
-                InlineKeyboardButton("❄️ Close ❄️", callback_data="stats_close")
+                InlineKeyboardButton("⬅️ ʙᴀᴄᴋ ⬅️", callback_data="settings_menu_1"),
+                InlineKeyboardButton("❄️ ᴄʟᴏsᴇ ❄️", callback_data="stats_close")
             ]
         ]
         
@@ -150,12 +150,12 @@ async def start_menu_cb(client, callback_query):
     )
     buttons = InlineKeyboardMarkup([
         [
-            InlineKeyboardButton("⚙️ Settings", callback_data="settings_menu"),
-            InlineKeyboardButton("📚 Help", callback_data="help_menu")
+            InlineKeyboardButton("⚙️ sᴇᴛᴛɪɴɢs", callback_data="settings_menu"),
+            InlineKeyboardButton("📚 ʜᴇʟᴘ", callback_data="help_menu")
         ],
         [
-            InlineKeyboardButton("📢 Official Channel", url="https://t.me/akaza7902"),
-            InlineKeyboardButton("👨‍💻 Developer", url="https://t.me/akaza7902")
+            InlineKeyboardButton("📢 ᴏꜰꜰɪᴄɪᴀʟ ᴄʜᴀɴɴᴇʟ", url="https://t.me/akaza7902"),
+            InlineKeyboardButton("👨‍💻 ᴅᴇᴠᴇʟᴏᴘᴇʀ", url="https://t.me/akaza7902")
         ]
     ])
     await edit_msg_with_pic(callback_query.message, caption, buttons)
@@ -184,7 +184,7 @@ async def set_source_menu(client, callback_query):
                 InlineKeyboardButton(f"{'✅ ' if current == 'allmanga' else ''}AllManga", callback_data="set_source_allmanga")
             ],
             [
-                InlineKeyboardButton("⬅ Back", callback_data="settings_menu")
+                InlineKeyboardButton("⬅ ʙᴀᴄᴋ", callback_data="settings_menu")
             ]
         ]
         

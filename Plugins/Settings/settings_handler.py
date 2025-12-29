@@ -20,8 +20,8 @@ async def cancel_input_cb(client, callback_query):
         get_styled_text("❌ Input Cancelled."),
         parse_mode=enums.ParseMode.HTML
     )
-    buttons = [[InlineKeyboardButton("🔙 Back to Settings", callback_data="settings_menu")]]
-    await callback_query.message.reply_text("Cancelled.", reply_markup=InlineKeyboardMarkup(buttons))
+    buttons = [[InlineKeyboardButton("🔙 ʙᴀᴄᴋ ᴛᴏ sᴇᴛᴛɪɴɢs", callback_data="settings_menu")]]
+    await callback_query.message.reply_text("ᴄᴀɴᴄᴇʟʟᴇᴅ.", reply_markup=InlineKeyboardMarkup(buttons))
 
 
 @Client.on_message(filters.private & ~filters.command(["start", "help", "admin"]))
@@ -51,12 +51,12 @@ async def settings_input_listener(client, message):
             )
             buttons = [
                 [
-                    InlineKeyboardButton("Set / Change", callback_data="set_caption_input"),
-                    InlineKeyboardButton("Delete", callback_data="del_caption_btn")
+                    InlineKeyboardButton("sᴇᴛ / ᴄʜᴀɴɢᴇ", callback_data="set_caption_input"),
+                    InlineKeyboardButton("ᴅᴇʟᴇᴛᴇ", callback_data="del_caption_btn")
                 ],
                 [
-                    InlineKeyboardButton("⬅ Back", callback_data="settings_menu"),
-                    InlineKeyboardButton("❄ Close ❄", callback_data="stats_close")
+                    InlineKeyboardButton("⬅ ʙᴀᴄᴋ", callback_data="settings_menu"),
+                    InlineKeyboardButton("❄ ᴄʟᴏsᴇ ❄", callback_data="stats_close")
                 ]
             ]
             await message.reply(text, reply_markup=InlineKeyboardMarkup(buttons), parse_mode=enums.ParseMode.HTML)
@@ -74,7 +74,7 @@ async def settings_input_listener(client, message):
                 text, markup = await get_banner_menu(client)
                 await message.reply(text, reply_markup=markup, parse_mode=enums.ParseMode.HTML)
             else:
-                await message.reply("❌ Please send a photo.")
+                await message.reply("❌ ᴘʟᴇᴀsᴇ sᴇɴᴅ ᴀ ᴘʜᴏᴛᴏ.")
                 return
 
         elif state == "waiting_channel":
@@ -83,7 +83,7 @@ async def settings_input_listener(client, message):
                 await Seishiro.set_default_channel(cid)
                 await message.reply(get_styled_text(f"✅ Upload Channel Set: {cid}"), parse_mode=enums.ParseMode.HTML)
             except ValueError:
-                await message.reply("❌ Invalid Channel ID. Send a number like -100...")
+                await message.reply("❌ ɪɴᴠᴀʟɪᴅ ᴄʜᴀɴɴᴇʟ ɪᴅ. sᴇɴᴅ ᴀ ɴᴜᴍʙᴇʀ ʟɪᴋᴇ -100...")
                 return
 
         elif state == "waiting_dump_channel":
@@ -92,7 +92,7 @@ async def settings_input_listener(client, message):
                 await Seishiro.set_config("dump_channel", cid)
                 await message.reply(get_styled_text(f"✅ Dump Channel Set: {cid}"), parse_mode=enums.ParseMode.HTML)
             except ValueError:
-                await message.reply("❌ Invalid ID.")
+                await message.reply("❌ ɪɴᴠᴀʟɪᴅ ɪᴅ.")
                 return
 
         elif state == "waiting_auc_id":
@@ -102,25 +102,25 @@ async def settings_input_listener(client, message):
                     chat = await client.get_chat(cid)
                     title = chat.title
                 except Exception as e:
-                    await message.reply(f"❌ <b>Error:</b> Bot cannot access channel or invalid ID.\n`{e}`", parse_mode=enums.ParseMode.HTML)
-                    return
+                    await message.reply(f"❌ <b>ᴇʀʀᴏʀ:</b> ʙᴏᴛ ᴄᴀɴɴᴏᴛ ᴀᴄᴄᴇss ᴄʜᴀɴɴᴇʟ ᴏʀ ɪɴᴠᴀʟɪᴅ ɪᴅ.\ɴ`{e}`", ᴘᴀʀsᴇ_ᴍᴏᴅᴇ=ᴇɴᴜᴍs.ᴘᴀʀsᴇᴍᴏᴅᴇ.ʜᴛᴍʟ)
+                    ʀᴇᴛᴜʀɴ
                 
-                await Seishiro.add_auto_update_channel(cid, title)
+                ᴀᴡᴀɪᴛ sᴇɪsʜɪʀᴏ.ᴀᴅᴅ_ᴀᴜᴛᴏ_ᴜᴘᴅᴀᴛᴇ_ᴄʜᴀɴɴᴇʟ(ᴄɪᴅ, ᴛɪᴛʟᴇ)
                 
                 
-                curr_list = await Seishiro.get_auto_update_channels()
-                list_text = "\n".join([f"• {c.get('title', 'Unknown')} (`{c.get('_id')}`)" for c in curr_list])
+                ᴄᴜʀʀ_ʟɪsᴛ = ᴀᴡᴀɪᴛ sᴇɪsʜɪʀᴏ.ɢᴇᴛ_ᴀᴜᴛᴏ_ᴜᴘᴅᴀᴛᴇ_ᴄʜᴀɴɴᴇʟs()
+                ʟɪsᴛ_ᴛᴇxᴛ = "\ɴ".ᴊᴏɪɴ([f"• {c.get('title', 'Unknown')} (`{c.get('_id')}`)" for c in curr_list])
                 
                 text = get_styled_text(
                     f"✅ Added Auto Update Channel:\n{title} ({cid})\n\n"
                     f"<b>Current List:</b>\n{list_text}"
                 )
                 
-                buttons = [[InlineKeyboardButton("🔙 Back to List", callback_data="header_auto_update_channels")]]
+                buttons = [[InlineKeyboardButton("🔙 ʙᴀᴄᴋ ᴛᴏ ʟɪsᴛ", callback_data="header_auto_update_channels")]]
                 await message.reply(text, reply_markup=InlineKeyboardMarkup(buttons), parse_mode=enums.ParseMode.HTML)
 
             except ValueError:
-                await message.reply("❌ Invalid ID format.")
+                await message.reply("❌ ɪɴᴠᴀʟɪᴅ ɪᴅ ꜰᴏʀᴍᴀᴛ.")
                 return
         
         elif state == "waiting_password":
@@ -137,7 +137,7 @@ async def settings_input_listener(client, message):
                 await Seishiro.set_config("merge_size_limit", size)
                 await message.reply(get_styled_text(f"✅ Merge Size Limit: {size}MB"), parse_mode=enums.ParseMode.HTML)
             except ValueError:
-                await message.reply("❌ Send a number.")
+                await message.reply("❌ sᴇɴᴅ ᴀ ɴᴜᴍʙᴇʀ.")
                 return
 
         elif state == "waiting_regex":
@@ -154,9 +154,9 @@ async def settings_input_listener(client, message):
                 if await Seishiro.set_check_interval(val):
                     await message.reply(get_styled_text(f"✅ Check Interval Set: {val}s"), parse_mode=enums.ParseMode.HTML)
                 else:
-                    await message.reply("❌ Value out of range (60-3600).")
+                    await message.reply("❌ ᴠᴀʟᴜᴇ ᴏᴜᴛ ᴏꜰ ʀᴀɴɢᴇ (60-3600).")
             except ValueError:
-                await message.reply("❌ Invalid number.")
+                await message.reply("❌ ɪɴᴠᴀʟɪᴅ ɴᴜᴍʙᴇʀ.")
 
         elif state == "waiting_fsub_id":
             try:
@@ -164,13 +164,13 @@ async def settings_input_listener(client, message):
                 try:
                     await client.get_chat(cid) # Verify access
                 except:
-                    await message.reply("❌ Bot cannot access this channel. Add bot as Admin first!")
+                    await message.reply("❌ ʙᴏᴛ ᴄᴀɴɴᴏᴛ ᴀᴄᴄᴇss ᴛʜɪs ᴄʜᴀɴɴᴇʟ. ᴀᴅᴅ ʙᴏᴛ ᴀs ᴀᴅᴍɪɴ ꜰɪʀsᴛ!")
                     return
                 
                 await Seishiro.add_fsub_channel(cid)
                 await message.reply(get_styled_text(f"✅ FSub Channel Added: {cid}"), parse_mode=enums.ParseMode.HTML)
             except ValueError:
-                await message.reply("❌ Invalid ID.")
+                await message.reply("❌ ɪɴᴠᴀʟɪᴅ ɪᴅ.")
 
         elif state == "waiting_fsub_rem_id":
             try:
@@ -178,9 +178,9 @@ async def settings_input_listener(client, message):
                 if await Seishiro.remove_fsub_channel(cid):
                      await message.reply(get_styled_text(f"✅ FSub Channel Removed: {cid}"), parse_mode=enums.ParseMode.HTML)
                 else:
-                     await message.reply("❌ Channel not found in FSub list.")
+                     await message.reply("❌ ᴄʜᴀɴɴᴇʟ ɴᴏᴛ ꜰᴏᴜɴᴅ ɪɴ ꜰsᴜʙ ʟɪsᴛ.")
             except ValueError:
-                await message.reply("❌ Invalid ID.")
+                await message.reply("❌ ɪɴᴠᴀʟɪᴅ ɪᴅ.")
 
         elif state == "waiting_wm_text":
             wm = await Seishiro.get_watermark() or {}
@@ -196,7 +196,7 @@ async def settings_input_listener(client, message):
         elif state == "waiting_wm_color":
             color = message.text
             if not color.startswith("#") or len(color) not in [4, 7]:
-                 await message.reply("❌ Invalid format. Use #RRGGBB (e.g. #FF0000).")
+                 await message.reply("❌ ɪɴᴠᴀʟɪᴅ ꜰᴏʀᴍᴀᴛ. ᴜsᴇ #ʀʀɢɢʙʙ (ᴇ.ɢ. #ꜰꜰ0000).")
                  return
             
             wm = await Seishiro.get_watermark() or {}
@@ -224,7 +224,7 @@ async def settings_input_listener(client, message):
                 )
                 await message.reply(get_styled_text(f"✅ Opacity Set: {op}"), parse_mode=enums.ParseMode.HTML)
             except:
-                await message.reply("❌ Invalid number (0-255).")
+                await message.reply("❌ ɪɴᴠᴀʟɪᴅ ɴᴜᴍʙᴇʀ (0-255).")
 
         elif state == "waiting_deltimer":
             try:
@@ -232,7 +232,7 @@ async def settings_input_listener(client, message):
                 await Seishiro.set_del_timer(val)
                 await message.reply(get_styled_text(f"✅ Delete Timer Set: {val}s"), parse_mode=enums.ParseMode.HTML)
             except ValueError:
-                await message.reply("❌ Invalid number.")
+                await message.reply("❌ ɪɴᴠᴀʟɪᴅ ɴᴜᴍʙᴇʀ.")
 
         elif state == "waiting_thumb":
             if message.photo:
@@ -240,7 +240,7 @@ async def settings_input_listener(client, message):
                 await Seishiro.set_config("custom_thumbnail", file_id)
                 await message.reply(get_styled_text("✅ Custom Thumbnail Set!"), parse_mode=enums.ParseMode.HTML)
             else:
-                await message.reply("❌ Please send a photo.")
+                await message.reply("❌ ᴘʟᴇᴀsᴇ sᴇɴᴅ ᴀ ᴘʜᴏᴛᴏ.")
                 return
 
         elif state in ["waiting_channel_stickers", "waiting_update_sticker"]:
@@ -253,7 +253,7 @@ async def settings_input_listener(client, message):
                     val = txt
             
             if not val:
-                await message.reply("❌ Invalid input. Please send a Sticker or a valid File ID string.")
+                await message.reply("❌ ɪɴᴠᴀʟɪᴅ ɪɴᴘᴜᴛ. ᴘʟᴇᴀsᴇ sᴇɴᴅ ᴀ sᴛɪᴄᴋᴇʀ ᴏʀ ᴀ ᴠᴀʟɪᴅ ꜰɪʟᴇ ɪᴅ sᴛʀɪɴɢ.")
                 return
 
             key = state.replace("waiting_", "")
@@ -266,65 +266,65 @@ async def settings_input_listener(client, message):
                 await Seishiro.add_admin(new_admin_id)
                 await message.reply(get_styled_text(f"✅ User {new_admin_id} added as Admin."), parse_mode=enums.ParseMode.HTML)
             except ValueError:
-                await message.reply("❌ Invalid User ID.")
+                await message.reply("❌ ɪɴᴠᴀʟɪᴅ ᴜsᴇʀ ɪᴅ.")
             except Exception as e:
-                await message.reply(f"❌ Error: {e}")
+                await message.reply(f"❌ ᴇʀʀᴏʀ: {e}")
 
-        elif state == "waiting_del_admin":
-            try:
-                del_id = int(message.text)
-                if del_id == Config.USER_ID:
-                    await message.reply("❌ Cannot remove Owner.")
-                else:
-                    await Seishiro.remove_admin(del_id)
-                    await message.reply(get_styled_text(f"✅ User {del_id} removed from Admins."), parse_mode=enums.ParseMode.HTML)
+        ᴇʟɪꜰ sᴛᴀᴛᴇ == "ᴡᴀɪᴛɪɴɢ_ᴅᴇʟ_ᴀᴅᴍɪɴ":
+            ᴛʀʏ:
+                ᴅᴇʟ_ɪᴅ = ɪɴᴛ(ᴍᴇssᴀɢᴇ.ᴛᴇxᴛ)
+                ɪꜰ ᴅᴇʟ_ɪᴅ == ᴄᴏɴꜰɪɢ.ᴜsᴇʀ_ɪᴅ:
+                    ᴀᴡᴀɪᴛ ᴍᴇssᴀɢᴇ.ʀᴇᴘʟʏ("❌ ᴄᴀɴɴᴏᴛ ʀᴇᴍᴏᴠᴇ ᴏᴡɴᴇʀ.")
+                ᴇʟsᴇ:
+                    ᴀᴡᴀɪᴛ sᴇɪsʜɪʀᴏ.ʀᴇᴍᴏᴠᴇ_ᴀᴅᴍɪɴ(ᴅᴇʟ_ɪᴅ)
+                    ᴀᴡᴀɪᴛ ᴍᴇssᴀɢᴇ.ʀᴇᴘʟʏ(ɢᴇᴛ_sᴛʏʟᴇᴅ_ᴛᴇxᴛ(f"✅ User {del_id} removed from Admins."), parse_mode=enums.ParseMode.HTML)
             except ValueError:
-                await message.reply("❌ Invalid User ID.")
+                await message.reply("❌ ɪɴᴠᴀʟɪᴅ ᴜsᴇʀ ɪᴅ.")
             except Exception as e:
-                await message.reply(f"❌ Error: {e}")
+                await message.reply(f"❌ ᴇʀʀᴏʀ: {e}")
 
-        elif state == "waiting_broadcast_msg":
-             try:
-                status_msg = await message.reply("🚀 Preparing broadcast...")
-                all_users = await Seishiro.get_all_users()
-                total = len(all_users)
-                successful = 0
-                unsuccessful = 0
+        ᴇʟɪꜰ sᴛᴀᴛᴇ == "ᴡᴀɪᴛɪɴɢ_ʙʀᴏᴀᴅᴄᴀsᴛ_ᴍsɢ":
+             ᴛʀʏ:
+                sᴛᴀᴛᴜs_ᴍsɢ = ᴀᴡᴀɪᴛ ᴍᴇssᴀɢᴇ.ʀᴇᴘʟʏ("🚀 ᴘʀᴇᴘᴀʀɪɴɢ ʙʀᴏᴀᴅᴄᴀsᴛ...")
+                ᴀʟʟ_ᴜsᴇʀs = ᴀᴡᴀɪᴛ sᴇɪsʜɪʀᴏ.ɢᴇᴛ_ᴀʟʟ_ᴜsᴇʀs()
+                ᴛᴏᴛᴀʟ = ʟᴇɴ(ᴀʟʟ_ᴜsᴇʀs)
+                sᴜᴄᴄᴇssꜰᴜʟ = 0
+                ᴜɴsᴜᴄᴄᴇssꜰᴜʟ = 0
                 
-                for user_id in all_users:
-                    try:
-                        await message.copy(chat_id=user_id)
-                        successful += 1
-                    except Exception:
-                        unsuccessful += 1
+                ꜰᴏʀ ᴜsᴇʀ_ɪᴅ ɪɴ ᴀʟʟ_ᴜsᴇʀs:
+                    ᴛʀʏ:
+                        ᴀᴡᴀɪᴛ ᴍᴇssᴀɢᴇ.ᴄᴏᴘʏ(ᴄʜᴀᴛ_ɪᴅ=ᴜsᴇʀ_ɪᴅ)
+                        sᴜᴄᴄᴇssꜰᴜʟ += 1
+                    ᴇxᴄᴇᴘᴛ ᴇxᴄᴇᴘᴛɪᴏɴ:
+                        ᴜɴsᴜᴄᴄᴇssꜰᴜʟ += 1
                         
-                    if (successful + unsuccessful) % 20 == 0:
-                        try:
-                            await status_msg.edit(f"🚀 Broadcasting... {successful}/{total} sent.")
+                    ɪꜰ (sᴜᴄᴄᴇssꜰᴜʟ + ᴜɴsᴜᴄᴄᴇssꜰᴜʟ) % 20 == 0:
+                        ᴛʀʏ:
+                            ᴀᴡᴀɪᴛ sᴛᴀᴛᴜs_ᴍsɢ.ᴇᴅɪᴛ(f"🚀 Broadcasting... {successful}/{total} sent.")
                         except:
                             pass
                 
                 await status_msg.edit(
-                    f"✅ **Broadcast Complete**\n\n"
+                    f"✅ **ʙʀᴏᴀᴅᴄᴀsᴛ ᴄᴏᴍᴘʟᴇᴛᴇ**\ɴ\ɴ"
                     f"👥 Total: {total}\n"
                     f"✅ Sent: {successful}\n"
                     f"❌ Failed: {unsuccessful}"
                 )
              except Exception as e:
-                await message.reply(f"❌ Broadcast Error: {e}")
+                await message.reply(f"❌ ʙʀᴏᴀᴅᴄᴀsᴛ ᴇʀʀᴏʀ: {e}")
 
-        elif state == "waiting_ban_id":
-            try:
-                target_id = int(message.text)
-                if target_id == Config.USER_ID or target_id == message.from_user.id:
-                     await message.reply("❌ Cannot ban Owner or Self.")
-                else:
-                    if await Seishiro.ban_user(target_id):
-                        await message.reply(get_styled_text(f"🚫 User {target_id} has been BANNED."), parse_mode=enums.ParseMode.HTML)
+        ᴇʟɪꜰ sᴛᴀᴛᴇ == "ᴡᴀɪᴛɪɴɢ_ʙᴀɴ_ɪᴅ":
+            ᴛʀʏ:
+                ᴛᴀʀɢᴇᴛ_ɪᴅ = ɪɴᴛ(ᴍᴇssᴀɢᴇ.ᴛᴇxᴛ)
+                ɪꜰ ᴛᴀʀɢᴇᴛ_ɪᴅ == ᴄᴏɴꜰɪɢ.ᴜsᴇʀ_ɪᴅ ᴏʀ ᴛᴀʀɢᴇᴛ_ɪᴅ == ᴍᴇssᴀɢᴇ.ꜰʀᴏᴍ_ᴜsᴇʀ.ɪᴅ:
+                     ᴀᴡᴀɪᴛ ᴍᴇssᴀɢᴇ.ʀᴇᴘʟʏ("❌ ᴄᴀɴɴᴏᴛ ʙᴀɴ ᴏᴡɴᴇʀ ᴏʀ sᴇʟꜰ.")
+                ᴇʟsᴇ:
+                    ɪꜰ ᴀᴡᴀɪᴛ sᴇɪsʜɪʀᴏ.ʙᴀɴ_ᴜsᴇʀ(ᴛᴀʀɢᴇᴛ_ɪᴅ):
+                        ᴀᴡᴀɪᴛ ᴍᴇssᴀɢᴇ.ʀᴇᴘʟʏ(ɢᴇᴛ_sᴛʏʟᴇᴅ_ᴛᴇxᴛ(f"🚫 User {target_id} has been BANNED."), parse_mode=enums.ParseMode.HTML)
                     else:
-                        await message.reply("❌ Failed to ban user.")
+                        await message.reply("❌ ꜰᴀɪʟᴇᴅ ᴛᴏ ʙᴀɴ ᴜsᴇʀ.")
             except ValueError:
-                await message.reply("❌ Invalid User ID.")
+                await message.reply("❌ ɪɴᴠᴀʟɪᴅ ᴜsᴇʀ ɪᴅ.")
 
         elif state == "waiting_unban_id":
             try:
@@ -332,9 +332,9 @@ async def settings_input_listener(client, message):
                 if await Seishiro.unban_user(target_id):
                     await message.reply(get_styled_text(f"✅ User {target_id} has been UNBANNED."), parse_mode=enums.ParseMode.HTML)
                 else:
-                    await message.reply("❌ Failed to unban user.")
+                    await message.reply("❌ ꜰᴀɪʟᴇᴅ ᴛᴏ ᴜɴʙᴀɴ ᴜsᴇʀ.")
             except ValueError:
-                await message.reply("❌ Invalid User ID.")
+                await message.reply("❌ ɪɴᴠᴀʟɪᴅ ᴜsᴇʀ ɪᴅ.")
 
 
     except Exception as e:

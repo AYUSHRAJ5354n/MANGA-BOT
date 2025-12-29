@@ -1,5 +1,5 @@
 aiohttp
-TgCrypto 
+TgCrypto
 aiofiles
 beautifulsoup4
 pillow
@@ -7,3 +7,6 @@ pyrofork
 motor
 flask
 pypdf
+dnspython
+python-dotenv
+lxml

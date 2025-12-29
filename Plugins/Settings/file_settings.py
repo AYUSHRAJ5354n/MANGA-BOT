@@ -23,7 +23,7 @@ async def set_format_cb(client, callback_query):
     )
     user_states[callback_query.from_user.id] = {"state": "waiting_format"}
     
-    buttons = [[InlineKeyboardButton("❌ Cancel", callback_data="cancel_input")]]
+    buttons = [[InlineKeyboardButton("❌ ᴄᴀɴᴄᴇʟ", callback_data="cancel_input")]]
     await callback_query.message.edit_text(text, reply_markup=InlineKeyboardMarkup(buttons), parse_mode=enums.ParseMode.HTML)
     
     asyncio.create_task(timeout_handler(client, callback_query.message, callback_query.from_user.id, "waiting_format"))
@@ -55,10 +55,10 @@ async def set_compress_cb(client, callback_query):
     if row:
         buttons.append(row)
         
-    buttons.append([InlineKeyboardButton("| DELETE |", callback_data="del_quality")])
+    buttons.append([InlineKeyboardButton("| ᴅᴇʟᴇᴛᴇ |", callback_data="del_quality")])
     buttons.append([
-        InlineKeyboardButton("⬅ Back", callback_data="settings_menu"),
-        InlineKeyboardButton("| CLOSE |", callback_data="stats_close")
+        InlineKeyboardButton("⬅ ʙᴀᴄᴋ", callback_data="settings_menu"),
+        InlineKeyboardButton("| ᴄʟᴏsᴇ |", callback_data="stats_close")
     ])
     
     await callback_query.message.edit_text(text, reply_markup=InlineKeyboardMarkup(buttons), parse_mode=enums.ParseMode.HTML)
@@ -87,7 +87,7 @@ async def set_password_cb(client, callback_query):
     )
     user_states[callback_query.from_user.id] = {"state": "waiting_password"}
     
-    buttons = [[InlineKeyboardButton("❌ Cancel", callback_data="cancel_input")]]
+    buttons = [[InlineKeyboardButton("❌ ᴄᴀɴᴄᴇʟ", callback_data="cancel_input")]]
     await callback_query.message.edit_text(text, reply_markup=InlineKeyboardMarkup(buttons), parse_mode=enums.ParseMode.HTML)
     
     asyncio.create_task(timeout_handler(client, callback_query.message, callback_query.from_user.id, "waiting_password"))
@@ -108,15 +108,15 @@ async def set_merge_size_cb(client, callback_query):
     )
     buttons = [
         [
-            InlineKeyboardButton("50 MB", callback_data="set_ms_50"),
-            InlineKeyboardButton("100 MB", callback_data="set_ms_100"),
-            InlineKeyboardButton("500 MB", callback_data="set_ms_500")
+            InlineKeyboardButton("50 ᴍʙ", callback_data="set_ms_50"),
+            InlineKeyboardButton("100 ᴍʙ", callback_data="set_ms_100"),
+            InlineKeyboardButton("500 ᴍʙ", callback_data="set_ms_500")
         ],
         [
-            InlineKeyboardButton("Custom", callback_data="set_ms_custom"),
-            InlineKeyboardButton("Disable", callback_data="set_ms_disable")
+            InlineKeyboardButton("ᴄᴜsᴛᴏᴍ", callback_data="set_ms_custom"),
+            InlineKeyboardButton("ᴅɪsᴀʙʟᴇ", callback_data="set_ms_disable")
         ],
-        [InlineKeyboardButton("🔙 Back", callback_data="settings_menu")]
+        [InlineKeyboardButton("🔙 ʙᴀᴄᴋ", callback_data="settings_menu")]
     ]
     await callback_query.message.edit_text(text, reply_markup=InlineKeyboardMarkup(buttons), parse_mode=enums.ParseMode.HTML)
 
@@ -130,8 +130,8 @@ async def merge_size_action(client, callback_query):
              "<i>(Auto-close in 30s)</i>"
         )
         buttons = [
-            [InlineKeyboardButton("❌ Cancel", callback_data="cancel_input")],
-            [InlineKeyboardButton("⬅ Back", callback_data="settings_menu")]
+            [InlineKeyboardButton("❌ ᴄᴀɴᴄᴇʟ", callback_data="cancel_input")],
+            [InlineKeyboardButton("⬅ ʙᴀᴄᴋ", callback_data="settings_menu")]
         ]
         await edit_msg_with_pic(callback_query.message, text, InlineKeyboardMarkup(buttons))
         
@@ -153,10 +153,10 @@ async def merge_size_action(client, callback_query):
 async def set_format_cmd(client, message):
     if len(message.command) < 2:
         curr = await Seishiro.get_format()
-        return await message.reply(f"Usage: /set_format <format>\nCurrent: `{curr}`")
-    fmt = message.text.split(None, 1)[1]
-    await Seishiro.set_format(fmt)
-    await message.reply(f"<blockquote><b>✅ Format Updated</b></blockquote>\n`{fmt}`", parse_mode=enums.ParseMode.HTML)
+        return await message.reply(f"ᴜsᴀɢᴇ: /sᴇᴛ_ꜰᴏʀᴍᴀᴛ <format>\ɴᴄᴜʀʀᴇɴᴛ: `{curr}`")
+    ꜰᴍᴛ = ᴍᴇssᴀɢᴇ.ᴛᴇxᴛ.sᴘʟɪᴛ(ɴᴏɴᴇ, 1)[1]
+    ᴀᴡᴀɪᴛ sᴇɪsʜɪʀᴏ.sᴇᴛ_ꜰᴏʀᴍᴀᴛ(ꜰᴍᴛ)
+    ᴀᴡᴀɪᴛ ᴍᴇssᴀɢᴇ.ʀᴇᴘʟʏ(f"<blockquote><b>✅ Format Updated</b></blockquote>\n`{fmt}`", parse_mode=enums.ParseMode.HTML)
 
 @Client.on_message(filters.command("view_format") & filters.private & admin)
 async def view_format_cmd(client, message):

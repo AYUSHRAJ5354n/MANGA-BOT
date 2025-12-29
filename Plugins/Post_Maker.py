@@ -22,13 +22,13 @@ async def create_post(client: Client, message: Message):
         return
 
     if not message.reply_to_message or not message.reply_to_message.document:
-        await message.reply_text("❌ Please reply to a document/file to create a post.")
+        await message.reply_text("❌ ᴘʟᴇᴀsᴇ ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴅᴏᴄᴜᴍᴇɴᴛ/ꜰɪʟᴇ ᴛᴏ ᴄʀᴇᴀᴛᴇ ᴀ ᴘᴏsᴛ.")
         return
 
     args = message.text.split(None, 1)
     if len(args) < 2:
         await message.reply_text(
-            "❌ **Usage:** `/makepost <Manga Name> | <Caption>`\n"
+            "❌ **ᴜsᴀɢᴇ:** `/ᴍᴀᴋᴇᴘᴏsᴛ <Manga Name> | <Caption>`\ɴ"
             "Reply to the file you want to link.\n\n"
             "Example: `/makepost Naruto | Best series ever!`"
         )
@@ -41,7 +41,7 @@ async def create_post(client: Client, message: Message):
         caption_text = parts[1].strip()
     else:
         manga_name = content.strip()
-        caption_text = "Click the button below to read."
+        caption_text = "ᴄʟɪᴄᴋ ᴛʜᴇ ʙᴜᴛᴛᴏɴ ʙᴇʟᴏᴡ ᴛᴏ ʀᴇᴀᴅ."
 
     file_id = message.reply_to_message.document.file_id
     encoded_id = encode_payload(file_id)
@@ -62,7 +62,7 @@ async def create_post(client: Client, message: Message):
     )
     
     keyboard = InlineKeyboardMarkup([
-        [InlineKeyboardButton("📥 Read Manga", url=link)]
+        [InlineKeyboardButton("📥 ʀᴇᴀᴅ ᴍᴀɴɢᴀ", url=link)]
     ])
     
     await message.reply_text(
