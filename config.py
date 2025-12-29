@@ -29,7 +29,7 @@ class Config:
     TG_BOT_WORKERS = int(os.getenv("TG_BOT_WORKERS", "4"))
 
     PICS = [
-        "","","","","","","","" 
+        "https://ibb.co/VYSPzSDH","https://ibb.co/rGTqCwBV","https://ibb.co/r2QZ0T0q","https://ibb.co/67kGFzC5","https://ibb.co/gZh6qysN","https://ibb.co/0ysjvb0t","https://ibb.co/7dGbyPvk"
     ]
 
     DEFAULT_FILENAME_FORMAT = "{manga_name} [Ch-{chapter}]"
