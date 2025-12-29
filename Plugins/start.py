@@ -92,7 +92,7 @@ async def start_msg(client, message):
             ],
             [
                 InlineKeyboardButton("📢 ᴏꜰꜰɪᴄɪᴀʟ ᴄʜᴀɴɴᴇʟ", url="https://t.me/RexBots_Official"),
-                InlineKeyboardButton(" ᴅᴇᴠᴇʟᴏᴘᴇʀ", url="https://t.me/akaza7902")
+                InlineKeyboardButton(" ᴅᴇᴠᴇʟᴏᴘᴇʀ", url="https://t.me/RexBots_Official")
             ]
         ])
 
