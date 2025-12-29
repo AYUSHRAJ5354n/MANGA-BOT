@@ -8,13 +8,13 @@ import os
 
 class Config:
     BOT_TOKEN = os.getenv("BOT_TOKEN", "")
-    USER_ID = int(os.getenv("USER_ID", ""))
+    USER_ID = int(os.getenv("USER_ID", "1685470205"))
     API_ID = int(os.getenv("API_ID", ""))
     API_HASH = os.getenv("API_HASH", "")
-    DB_NAME = os.getenv("DB_NAME", "")
-    DB_URL = os.getenv("DB_URL", "")
-    CHECK_INTERVAL = int(os.getenv("CHECK_INTERVAL", ""))
-    MAX_CHAPTERS_PER_CHECK = int(os.getenv("MAX_CHAPTERS", "5"))
+    DB_NAME = os.getenv("DB_NAME", "automanga")
+    DB_URL = os.getenv("DB_URL", "mongodb+srv://AYU:AYU@cluster0.pmliawm.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+    CHECK_INTERVAL = int(os.getenv("CHECK_INTERVAL", "50"))
+    MAX_CHAPTERS_PER_CHECK = int(os.getenv("MAX_CHAPTERS", "10"))
     DOWNLOAD_DIR = "downloads"
     STATE_FILE = "bot_state.json"
     CACHE_FILE = "manga_ids_cache.json"
